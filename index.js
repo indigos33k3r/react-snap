@@ -375,7 +375,7 @@ const fixWebpackChunksIssue = ({
   crav2
 }) => {
   return page.evaluate(
-    (basePath, http2PushManifest, inlineCss) => {
+    (basePath, http2PushManifest, inlineCss, crav2) => {
       const localScripts = Array.from(document.scripts).filter(
         x => x.src && x.src.startsWith(basePath)
       );
@@ -425,7 +425,8 @@ const fixWebpackChunksIssue = ({
     },
     basePath,
     http2PushManifest,
-    inlineCss
+    inlineCss,
+    crav2
   );
 };
 
@@ -634,7 +635,7 @@ const run = async (userOptions, { fs } = { fs: nativeFs }) => {
           basePath,
           http2PushManifest,
           inlineCss: options.inlineCss,
-          crav2: options.fixWebpackChunksIssue === 'CRAv2'
+          crav2: options.fixWebpackChunksIssue === "CRAv2"
         });
       }
       if (options.asyncScriptTags) await asyncScriptTags({ page });
